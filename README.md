@@ -19,7 +19,7 @@ This repository keeps the app source available for the Android APK published in 
 - Removed feedback, help center, update prompts, update checks, record/filing text, and original developer-facing metadata from the Android UI.
 - Disabled the default non-AI update and feedback network paths.
 - Added build metadata display with timestamp support.
-- Kept local build dependencies isolated under `.local/` so the workspace can be cleaned by deleting that directory.
+
 
 ## Android APK
 
