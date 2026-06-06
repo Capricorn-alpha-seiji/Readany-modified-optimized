@@ -1,0 +1,39 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -158,6 +158,11 @@ else()
+   set(CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/sysroot")
+ endif()
+ 
++if(CMAKE_SYSTEM_NAME MATCHES "Android")
++  set(PCRE_CFLAGS "-I${CMAKE_BINARY_DIR}/sysroot/include")
++  set(PCRE_LDFLAGS "-L${CMAKE_BINARY_DIR}/sysroot/lib;-lpcre2-8")
++endif()
++
+ add_subdirectory(lighttpd1.4)
+ 
+ set(PLUGIN_STATIC
+diff --git a/lighttpd1.4/src/CMakeLists.txt b/lighttpd1.4/src/CMakeLists.txt
+--- a/lighttpd1.4/src/CMakeLists.txt
++++ b/lighttpd1.4/src/CMakeLists.txt
+@@ -331,9 +331,9 @@ macro(XCONFIG _package _link_FLAGS _cflags)
+ 		else()
+ 			execute_process(COMMAND ${XCONFIG_EXECUTABLE} --libs OUTPUT_VARIABLE __link_FLAGS)
+ 		endif()
+-		string(REPLACE "\n" "" ${_link_FLAGS} ${__link_FLAGS})
++		string(REPLACE "\n" "" ${_link_FLAGS} "${__link_FLAGS}")
+ 		execute_process(COMMAND ${XCONFIG_EXECUTABLE} --cflags OUTPUT_VARIABLE __cflags)
+-		string(REPLACE "\n" "" ${_cflags} ${__cflags})
++		string(REPLACE "\n" "" ${_cflags} "${__cflags}")
+ 	else()
+ 		message(STATUS "found ${_package}: no")
+ 	endif()
+@@ -564,7 +564,7 @@ if(WITH_PCRE2)
+ 	if(PCRE2_FOUND)
+ 		set(PCRE_LDFLAGS "${PCRE2_LDFLAGS}")
+ 		set(PCRE_CFLAGS "${PCRE2_CFLAGS}")
+-	else()
++	elseif(NOT PCRE_LDFLAGS AND NOT PCRE_CFLAGS)
+ 		## if we have pcre2-config, use it
+ 		xconfig(pcre2-config PCRE_LDFLAGS PCRE_CFLAGS)
+ 	endif()

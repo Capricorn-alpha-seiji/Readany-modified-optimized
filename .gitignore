@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+.local/
+
+# Build
+dist/
+target/
+*.tsbuildinfo
+*.apk
+backups/
+readany_screen_after_install.png
+packages/app-expo/android/.gradle/
+packages/app-expo/android/app/build/
+packages/app-expo/android/build/
+
+# IDE
+.vscode/
+.obsidian/
+.idea/
+.codebuddy/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Tauri
+packages/app/src-tauri/target/
+packages/app/src-tauri/gen/
+packages/app/src-tauri/WixTools/
+tauri-signing-key.key
+tauri-signing-key.key.pub
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+
+readese/*
+
+# Local WebDAV test server
+webdav-server/
+theme-studio/.claude/settings.local.json

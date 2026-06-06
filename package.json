@@ -1,0 +1,31 @@
+{
+  "name": "readany",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "test": "pnpm --filter @readany/core test",
+    "test:core": "pnpm --filter @readany/core test",
+    "expo:start": "pnpm --filter @readany/app-expo start",
+    "expo:android": "pnpm --filter @readany/app-expo android",
+    "expo:prebuild": "pnpm --filter @readany/app-expo prebuild",
+    "android:apk": "powershell -NoProfile -ExecutionPolicy Bypass -File ./build-android-apk.ps1",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "19.1.0",
+      "react-dom": "19.1.0",
+      "@types/react": "19.1.17"
+    },
+    "patchedDependencies": {
+      "@dr.pogodin/react-native-static-server@0.26.2": "patches/@dr.pogodin__react-native-static-server@0.26.2.patch",
+      "@langchain/core": "patches/@langchain__core.patch",
+      "react-native-track-player@4.1.2": "patches/react-native-track-player@4.1.2.patch"
+    }
+  },
+  "packageManager": "pnpm@9.15.0"
+}
