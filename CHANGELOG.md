@@ -1,19 +1,35 @@
-# Changelog
+# 更新记录
 
 ## win-v1.0.0 - 2026-06-07
 
-- Added Windows Tauri desktop source tree on the dedicated `windows` branch.
-- Set desktop application version to `1.0.0`.
-- Removed original upstream update/help/filing/feedback traces from the Windows build.
-- Added explicit network permission control while keeping user-configured providers such as AI providers and WebDAV available.
-- Fixed local file import behavior when network access is disabled.
-- Restored desktop window controls on non-reader screens and hid global chrome during immersive reading.
-- Added `Esc` handling to close the active reader book.
-- Replaced the browser context menu with reader-oriented right-click behavior.
-- Upgraded page transitions, floating panels, dialogs, buttons, cards, tab items, and progress feedback to GPU-friendly `transform` and `opacity` motion.
-- Built and verified the Windows NSIS installer.
+### 新增
 
-Installer SHA256:
+- 新增 Windows Tauri 桌面端源码分支 `windows`。
+- 新增 Windows 独立 Release 标签规则：`win-vX.Y.Z`。
+- 新增设置中的联网许可控制。
+- 新增阅读状态下按 `Esc` 关闭当前阅读书籍。
+
+### 修复
+
+- 修复禁用联网时本地文件导入无法打开文件选择器的问题。
+- 修复未导入书籍时顶部窗口控制无法最小化、最大化、关闭的问题。
+- 修复阅读状态下全局导航栏与窗口控制没有进入沉浸隐藏的问题。
+- 修复右键弹出 WebView 默认菜单的问题，改为阅读菜单逻辑。
+
+### 调整
+
+- 版本号调整为 `1.0.0`。
+- 移除原开发团队相关更新入口、帮助中心、备案信息和反馈通道。
+- 保留用户主动配置的 AI Provider、WebDAV、局域网同步等能力。
+- 优化页面切换、弹窗、浮层、按钮、卡片、Tab、工具栏和进度反馈动效。
+- 动效统一限制为 `transform` 与 `opacity`，避免重排属性造成掉帧。
+
+### 验证
+
+- `pnpm --filter app build` 通过。
+- Tauri NSIS 打包通过。
+
+安装包 SHA256：
 
 ```text
 DA4BB5321FEF1E751A89FBCCA5E31E3CC90D743EE0C6AF5B7F2FC79DA01C0CD4
