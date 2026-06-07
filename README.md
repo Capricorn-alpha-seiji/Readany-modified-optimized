@@ -96,15 +96,6 @@ packages/app/src-tauri/target/x86_64-pc-windows-gnu/release/bundle/nsis/
 packages/app/src-tauri/target/x86_64-pc-windows-gnu/release/app.exe
 ```
 
-## 发布流程
-
-Windows 版本发布时请保持以下约定：
-
-1. 在 `windows` 分支提交源码更新。
-2. 使用 `win-vX.Y.Z` 格式创建标签。
-3. GitHub Release 选择对应的 `win-` 标签。
-4. Release 附件上传 Windows 安装包。
-5. 不要把 Windows 发布推到 `main`，避免覆盖 Android 版本。
 
 ## 已验证
 
